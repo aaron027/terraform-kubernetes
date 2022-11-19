@@ -1,0 +1,23 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: junglemeet-backend
+  labels:
+    app: junglemeet-backend
+spec:
+  containers:
+    - name: junglemeet-backend
+      image: 026376606405.dkr.ecr.us-east-1.amazonaws.com/jm_backend:latest
+
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: junglemeet-service
+spec:
+  selector:
+    app: junglemeet-backend
+  ports:
+    - port: 3000
