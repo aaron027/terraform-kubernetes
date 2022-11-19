@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-1"
+  region = "us-east-1"
 }
 
 data "aws_eks_cluster" "cluster" {
@@ -27,7 +27,7 @@ locals {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.47.0"
+  version = "3.18.1"
 
   name                 = "k8s-vpc"
   cidr                 = "172.16.0.0/16"
@@ -64,8 +64,8 @@ module "eks" {
       desired_capacity = 2
       max_capacity     = 3
       min_capacity     = 1
-
-      instance_type = "m5.large"
+      capacity_type  = "SPOT"
+      instance_type = "m3.medium"
     }
   }
 
